@@ -61,9 +61,9 @@ const Bookan = () => {
 
   return (
     <>
-      <div className="h-screen text-center text-7xl text-gray-900 dark:text-white">
+      <div className="h-screen text-center lg:text-9xl text-7xl text-gray-900 dark:text-white">
         <p className="text-center text-align pt-20 mt-20">Bookan</p>
-        <p className="text-xs mt-3">The best book exchange</p>
+        <p className="lg:sm text-xs mt-3">The best book exchange</p>
         <input
         type="text"
         className="mt-5 mb-10 w-64 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
