@@ -66,14 +66,41 @@ app.delete("/Bookan/:Id", (req, res) => {
 
 app.get("/Bookan/:Id", (req, res) => {
   const q = "SELECT * FROM Bookan WHERE Id = ?";
+  console.log(req.params.Id);
   db.query(q, [req.params.Id], (err, data) => {
     if (err) {
       return res.json(err);
     }
+    console.log(data);
     return res.json(data);
   });
 });
 
+// update book by id
+
+app.put("/Bookan/:Id", (req, res) => {
+  const q =
+    "UPDATE Bookan SET Title = ?, Author = ?, Price = ?, Category = ?, Lecturer = ?, Department = ?, Grade = ?, Edition = ?, Descriptions = ?, Cover = ? WHERE Id = ?";
+  const values = [
+    req.body.Title,
+    req.body.Author,
+    req.body.Price,
+    req.body.Category,
+    req.body.Lecturer,
+    req.body.Department,
+    req.body.Grade,
+    req.body.Edition,
+    req.body.Descriptions,
+    req.body.Cover,
+    req.params.Id,
+  ];
+  db.query(q, values, (err, data) => {
+    if (err) {
+      return res.json(err);
+    }
+    return res.json("Book updated!");
+  });
+});
 
 app.listen(8080, () => {
   console.log("Connected to backend!");

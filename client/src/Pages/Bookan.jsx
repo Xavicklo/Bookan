@@ -38,7 +38,7 @@ const Bookan = () => {
         Bookan
       </div>
 
-      <div className="w-full grid grid-cols-8 gap-4 text-gray-900 dark:text-white">
+      <div className="w-full grid lg:grid-cols-8 md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 text-gray-900 dark:text-white">
         {bookan.map((book) => (
           <div className="col-span-1" key={book.Id}>
             {book.Cover && (
