@@ -1,44 +1,24 @@
 import axios from "axios";
 import React from "react";
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const Update = () => {
-  const [book, setBook] = React.useState({
-    Title: "",
-    Author: "",
-    Price: null,
-    Category: "",
-    Lecturer: "",
-    Department: "",
-    Grade: "",
-    Edition: "",
-    Descriptions: "",
-    Cover: "",
-  });
+  const [book, setBook] = useState();
+  // get params
+  let { Id } = useParams();
 
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const book = await axios.get(`http://localhost:8080/Bookan`);
+        const book = await axios.get(`http://localhost:8080/Bookan/${Id}}`);
         console.log(book.data);
-        setBook(book.data);
+        setBook(book.data[0]);
       } catch (err) {
         console.log(err);
       }
     };
     fetchBook();
-    // const fetchBook = async () => {
-    //   try {
-    //     // get book data by id
-    //     const book = await axios.get("http://localhost:8080/Bookan/:Id");
-    //     console.log(book);
-    //     setBook(book);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // fetchBook();
   }, []);
 
   const navigate = useNavigate();
@@ -50,7 +30,7 @@ const Update = () => {
     e.preventDefault();
     console.log(book);
     try {
-      const res = await axios.post("http://localhost:8080/Bookan", book);
+      const res = await axios.put(`http://localhost:8080/Bookan/${Id}`, book);
       console.log(res);
       navigate("/");
     } catch (err) {
@@ -75,8 +55,8 @@ const Update = () => {
               onChange={handleChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Principles of Economics"
+              value={book?.Title}
               required
-              // value={book.Title}
             />
           </div>
           <div>
@@ -92,6 +72,7 @@ const Update = () => {
               onChange={handleChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Gregory Mankiw"
+              value={book?.Author}
               required
             />
           </div>
@@ -110,6 +91,7 @@ const Update = () => {
               onChange={handleChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="經濟學"
+              value={book?.Category}
               required
             />
           </div>
@@ -126,6 +108,7 @@ const Update = () => {
               onChange={handleChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="吳文傑"
+              value={book?.Lecturer}
               required
             />
           </div>
@@ -142,6 +125,7 @@ const Update = () => {
               onChange={handleChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="企管系"
+              value={book?.Department}
               required
             />
           </div>
@@ -158,6 +142,7 @@ const Update = () => {
               onChange={handleChange}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="一年級"
+              value={book?.Grade}
               required
             />
           </div>
@@ -175,6 +160,7 @@ const Update = () => {
             onChange={handleChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="880"
+            value={book?.Price}
             required
           />
         </div>
@@ -191,6 +177,7 @@ const Update = () => {
             onChange={handleChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="1/30後開放預約"
+            value={book?.Descriptions}
             required
           />
         </div>
@@ -207,6 +194,7 @@ const Update = () => {
             onChange={handleChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Cover.png"
+            value={book?.Cover}
             required
           />
         </div>
