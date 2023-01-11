@@ -13,7 +13,7 @@ const Add = () => {
     Grade: "",
     Edition: "",
     Descriptions: "",
-    Cover: "",
+    Cover: "cover.png",
   });
 
   const navigate = useNavigate();

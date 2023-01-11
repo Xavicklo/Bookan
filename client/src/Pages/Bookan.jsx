@@ -2,10 +2,10 @@ import React from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import whiteBook from "../book.png";
 
 const Bookan = () => {
   const [bookan, setBookan] = React.useState([]);
-  const [selected, setSelected] = React.useState([""]);
 
   useEffect(() => {
     const fetchAllBooks = async () => {
@@ -38,22 +38,24 @@ const Bookan = () => {
         Bookan
       </div>
 
-      <div className="w-full grid grid-cols-8 gap-4 text-gray-900 dark:text-white">
+      <div className="w-full grid lg:grid-cols-8 md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 text-gray-900 dark:text-white">
         {bookan.map((book) => (
           <div className="col-span-1" key={book.Id}>
             {book.Cover && (
               <img
-                className="w-36 h-52 object-cover bg-white"
-                src={book.Cover}
+                className="w-36 h-52 object-cover bg-gray-900"
+                src={whiteBook}
                 alt="Cover"
               />
             )}
-            <div className="text-ml">{book.Title}</div>
             <div className="text-sm">
-              <p>編號: 111-1-{book.Id}</p>
-              <p>價格: ${book.Price}</p>
-              <p>課程: {book.Category}</p>
-              <p>授課教師: {book.Lecturer}</p>
+              <p>{book.Title}</p>
+              <p>科目名稱:{book.Category}</p>
+              {book.Lecturer.length>0 && <p>教師:{book.Lecturer}</p>}
+              <div className="text-md">
+                <p>Price: ${book.Price}</p>
+                <p>Bno: 111-1-{book.Id}</p>
+              </div>
             </div>
             <button
               className="bg-red-800 hover:bg-orange-700 text-white font-bold m-1 px-7 rounded"
@@ -66,9 +68,7 @@ const Bookan = () => {
             <button
               className="bg-blue-900 hover:bg-sky-500 text-white font-bold m-1 px-7 rounded"
               onClick={() => {
-                navigate(`/update/${book.Id}`);
-                setSelected(book.Id);
-              }}
+                navigate(`/update/${book.Id}`);              }}
             >
               Update
             </button>
