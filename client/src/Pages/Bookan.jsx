@@ -61,18 +61,21 @@ const Bookan = () => {
 
   return (
     <>
-      <div className="text-7xl font-bold mb-10 text-gray-900 dark:text-white">
-        Bookan
-      </div>
-      <input
+      <div className="h-screen text-center text-7xl text-gray-900 dark:text-white">
+        <p className="text-center text-align pt-20 mt-20">Bookan</p>
+        <p className="text-xs mt-3">The best book exchange</p>
+        <input
         type="text"
-        className="mb-10 w-96 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        className="mt-5 mb-10 w-64 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         onChange={(e) => {
           setSearchWords(e.target.value);
         }}
       />
+      </div>
+      
 
       <div className="w-full grid lg:grid-cols-8 md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 text-gray-900 dark:text-white">
+      
         {bookan.map((book) => (
           <div className="col-span-1" key={book.Id}>
             {book.Cover && (
