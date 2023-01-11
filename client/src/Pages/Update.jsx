@@ -11,7 +11,7 @@ const Update = () => {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const book = await axios.get(`http://localhost:8080/Bookan/${Id}}`);
+        const book = await axios.get(`https://bookan-server-production.up.railway.app/Bookan/${Id}}`);
         console.log(book.data);
         setBook(book.data[0]);
       } catch (err) {
@@ -30,7 +30,7 @@ const Update = () => {
     e.preventDefault();
     console.log(book);
     try {
-      const res = await axios.put(`http://localhost:8080/Bookan/${Id}`, book);
+      const res = await axios.put(`https://bookan-server-production.up.railway.app/Bookan/${Id}`, book);
       console.log(res);
       navigate("/");
     } catch (err) {

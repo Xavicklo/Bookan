@@ -10,7 +10,7 @@ const Bookan = () => {
 
   const fetchAllBooks = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/Bookan");
+      const res = await axios.get("https://bookan-server-production.up.railway.app/Bookan");
       setBookan(res.data);
       console.log(res.data);
     } catch (err) {
@@ -24,7 +24,7 @@ const Bookan = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:8080/Bookan/${id}`);
+      const res = await axios.delete(`https://bookan-server-production.up.railway.app/Bookan/${id}`);
       console.log(res);
       const newBookan = bookan.filter((book) => book.Id !== id);
       setBookan(newBookan);
@@ -37,7 +37,7 @@ const Bookan = () => {
   const filterBySearchWords = async () => {
     // try {
     //   const filteredBooks = await axios.get(
-    //     `http://localhost:8080/Bookan/${searchWords}`
+    //     `https://bookan-server-production.up.railway.app/Bookan/${searchWords}`
     //   );
 
     //   setBookan(filteredBooks.data);
@@ -82,11 +82,17 @@ const Bookan = () => {
                 alt="Cover"
               />
             )}
-            <div className="text-sm">
+            <div className="text-sm font-bold">
               <p>{book.Title}</p>
+            </div>
+            <div className="text-sm">
               <p>科目名稱:{book.Category}</p>
+            </div>
+            <div className="text-xs">
               {book.Lecturer.length>0 && <p>教師:{book.Lecturer}</p>}
-              <div className="text-md">
+              {book.Department.length>0 && <p>系所必修:{book.Department}</p>}
+              {book.Descriptions.length>0 && <p>備註:{book.Descriptions}</p>}
+              <div className="text-sm">
                 <p>Price: ${book.Price}</p>
                 <p>Bno: 111-1-{book.Id}</p>
               </div>

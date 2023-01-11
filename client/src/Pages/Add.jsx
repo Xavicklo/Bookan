@@ -13,7 +13,7 @@ const Add = () => {
     Grade: "",
     Edition: "",
     Descriptions: "",
-    Cover: "",
+    Cover: "Cover.png",
   });
 
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const Add = () => {
     e.preventDefault();
     console.log(book);
     try {
-      const res = await axios.post("http://localhost:8080/Bookan", book);
+      const res = await axios.post("https://bookan-server-production.up.railway.app/Bookan", book);
       console.log(res);
       navigate("/");
     } catch (err) {

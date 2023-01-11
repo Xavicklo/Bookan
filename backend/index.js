@@ -103,7 +103,7 @@ app.put("/Bookan/:Id", (req, res) => {
 });
 
 // get the book date by search word
-// http://localhost:8080/Bookan/${searchWords}
+// https://bookan-server-production.up.railway.app/Bookan/${searchWords}
 // app.get("/Bookan/:searchWords", (req, res) => {
 //   const q = "SELECT * FROM railway.Bookan WHERE Title LIKE ?";
 //   const searchWords = "%" + req.params.searchWords.toUpperCase + "%";
