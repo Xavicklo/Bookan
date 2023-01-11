@@ -102,6 +102,21 @@ app.put("/Bookan/:Id", (req, res) => {
   });
 });
 
+// get the book date by search word
+// http://localhost:8080/Bookan/${searchWords}
+// app.get("/Bookan/:searchWords", (req, res) => {
+//   const q = "SELECT * FROM railway.Bookan WHERE Title LIKE ?";
+//   const searchWords = "%" + req.params.searchWords.toUpperCase + "%";
+//   console.log(searchWords);
+//   db.query(q, searchWords, (err, data) => {
+//     if (err) {
+//       return res.json(err);
+//     }
+//     console.log(data);
+//     return res.json(data);
+//   });
+// });
+
 app.listen(8080, () => {
   console.log("Connected to backend!");
 });
